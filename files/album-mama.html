@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Feliz Día de la Madre, Paola 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Pinyon+Script&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  /* --- RESET & BASE --- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --rose: #c97090;
+    --rose-deep: #8a3050;
+    --gold: #b8945a;
+    --dark: #180c10;
+    --soft-bg: #2a1020;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* --- FONDO Y PARTÍCULAS --- */
+  #bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at 25% 35%, rgba(168, 60, 90, 0.28) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 65%, rgba(184, 148, 90, 0.1) 0%, transparent 55%),
+                #180c10;
+  }
+
+  #particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    bottom: -40px;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    8% {
+      opacity: 0.45;
+    }
+    88% {
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(-110vh) rotate(540deg);
+      opacity: 0;
+    }
+  }
+
+  /* --- SLIDER PRINCIPAL --- */
+  #slider {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    pointer-events: none;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* --- TARJETA DE PORTADA --- */
+  .cover-card {
+    position: relative;
+    width: min(420px, 88vw);
+    background: linear-gradient(155deg, #5a1f35 0%, #8a3055 28%, #b84870 55%, #8a3055 80%, #3a1020 100%);
+    border-radius: 24px;
+    padding: 62px 50px 58px;
+    text-align: center;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(184, 148, 90, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+  }
+
+  .cover-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .cover-card::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(184, 148, 90, 0.25);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-weight: 200;
+    font-size: 0.58rem;
+    letter-spacing: 9px;
+    color: rgba(226, 208, 168, 0.5);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: appear 0.9s 0.1s both;
+  }
+
+  .cover-heart {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 6px 20px rgba(168, 60, 90, 0.6));
+    animation: heartBeat 2.6s ease-in-out infinite, appear 0.9s 0.3s both;
+  }
+
+  @keyframes heartBeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    28% {
+      transform: scale(1.14);
+    }
+    55% {
+      transform: scale(1.05);
+    }
+  }
+
+  .cover-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(3rem, 10vw, 5.2rem);
+    color: #fff;
+    line-height: 1.0;
+    text-shadow: 0 4px 30px rgba(168, 60, 90, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 26px;
+    animation: appear 0.9s 0.45s both;
+  }
+
+  .cover-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 60%;
+    margin: 0 auto 20px;
+    animation: appear 0.9s 0.6s both;
+  }
+
+  .cover-divider::before,
+  .cover-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.5), transparent);
+  }
+
+  .cover-divider span {
+    color: rgba(184, 148, 90, 0.6);
+    font-size: 0.8rem;
+  }
+
+  .cover-from {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.8vw, 1.22rem);
+    color: rgba(255, 255, 255, 0.72);
+    animation: appear 0.9s 0.75s both;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* --- TARJETA DE FOTOS (MEJORADA) --- */
+  .photo-card {
+    position: relative;
+    width: min(700px, 95vw);
+    max-width: 700px;
+    background: var(--soft-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(184, 148, 90, 0.25);
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(2px);
+  }
+
+  /* Contenedor de la foto - ahora con relación de aspecto fija y mejor ajuste */
+  .photo-zone {
+    position: relative;
+    background: #1a0a12;
+    /* Relación de aspecto 4:3 para fotos más naturales */
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-zone img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Clave: contain para que la foto se vea completa sin recortar,
+       y un fondo elegante para los bordes */
+    object-fit: contain;
+    object-position: center center;
+    background-color: #1a0a12;
+    display: block;
+    transition: opacity 0.6s ease, transform 0.8s ease;
+    opacity: 0;
+    transform: scale(0.98);
+    will-change: transform, opacity;
+  }
+
+  .photo-zone img.loaded {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Efecto de viñeta sutil que no interfiere con la foto */
+  .photo-zone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Marco decorativo interno */
+  .photo-frame {
+    position: absolute;
+    inset: 12px;
+    z-index: 2;
+    border: 1px solid rgba(184, 148, 90, 0.35);
+    border-radius: 12px;
+    pointer-events: none;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .photo-counter {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    z-index: 3;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Zona de texto mejorada */
+  .text-zone {
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, #24101a 0%, #1c0c14 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 32px 24px;
+    gap: 12px;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid rgba(184, 148, 90, 0.25);
+  }
+
+  .text-zone::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.6), transparent);
+  }
+
+  .text-chapter {
+    font-weight: 300;
+    font-size: 0.6rem;
+    letter-spacing: 6px;
+    color: rgba(184, 148, 90, 0.7);
+    text-transform: uppercase;
+  }
+
+  .text-rule {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.5), transparent);
+  }
+
+  .text-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: rgba(255, 245, 240, 0.9);
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0;
+  }
+
+  .text-sig {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    color: var(--rose);
+    filter: drop-shadow(0 2px 8px rgba(168, 60, 90, 0.3));
+    margin-top: 4px;
+  }
+
+  .corner-gem {
+    position: absolute;
+    font-size: 0.7rem;
+    color: rgba(184, 148, 90, 0.3);
+    pointer-events: none;
+  }
+
+  .corner-gem.tl {
+    top: 12px;
+    left: 16px;
+  }
+
+  .corner-gem.tr {
+    top: 12px;
+    right: 16px;
+  }
+
+  .corner-gem.bl {
+    bottom: 12px;
+    left: 16px;
+  }
+
+  .corner-gem.br {
+    bottom: 12px;
+    right: 16px;
+  }
+
+  /* --- TARJETA DE POEMA --- */
+  .poem-card {
+    position: relative;
+    width: min(540px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: linear-gradient(160deg, #3a1020 0%, #6a2840 30%, #8a3555 55%, #6a2840 80%, #2a0c18 100%);
+    border-radius: 28px;
+    padding: 50px 44px 46px;
+    text-align: center;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(184, 148, 90, 0.2);
+    scrollbar-width: thin;
+  }
+
+  .poem-card::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  .poem-card::-webkit-scrollbar-thumb {
+    background: var(--rose);
+    border-radius: 10px;
+  }
+
+  .poem-eyebrow {
+    font-weight: 200;
+    font-size: 0.6rem;
+    letter-spacing: 8px;
+    color: rgba(226, 208, 168, 0.5);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .poem-heart {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 14px rgba(168, 60, 90, 0.55));
+    animation: heartBeat 2.6s ease-in-out infinite;
+  }
+
+  .poem-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(2.2rem, 7vw, 3.4rem);
+    color: #fff;
+    line-height: 1.05;
+    text-shadow: 0 3px 24px rgba(168, 60, 90, 0.45);
+    margin-bottom: 20px;
+  }
+
+  .poem-rule {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.6), transparent);
+    margin: 0 auto 22px;
+  }
+
+  .poem-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 2.1vw, 1.1rem);
+    color: rgba(255, 248, 242, 0.85);
+    line-height: 1.9;
+    max-width: 360px;
+    margin: 0 auto 28px;
+  }
+
+  .poem-body em {
+    display: block;
+    margin: 16px 0;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(255, 248, 242, 0.5);
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
+  .poem-sig-wrap {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .poem-sig {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    color: var(--rose);
+    filter: drop-shadow(0 2px 10px rgba(168, 60, 90, 0.35));
+  }
+
+  .poem-date {
+    font-weight: 200;
+    font-size: 0.6rem;
+    letter-spacing: 6px;
+    color: rgba(226, 208, 168, 0.4);
+    text-transform: uppercase;
+  }
+
+  /* --- TARJETA DE CIERRE --- */
+  .closing-card {
+    position: relative;
+    width: min(420px, 88vw);
+    background: linear-gradient(155deg, #3a1020 0%, #6a2840 35%, #9a3858 60%, #6a2840 82%, #2a0c18 100%);
+    border-radius: 28px;
+    padding: 54px 44px 50px;
+    text-align: center;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(184, 148, 90, 0.2);
+    overflow: hidden;
+  }
+
+  .closing-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .closing-card::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(184, 148, 90, 0.25);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+
+  .closing-heart {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 18px rgba(168, 60, 90, 0.55));
+    animation: heartBeat 2.6s ease-in-out infinite;
+  }
+
+  .closing-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(2.6rem, 8vw, 4.2rem);
+    color: #fff;
+    line-height: 1.05;
+    text-shadow: 0 4px 28px rgba(168, 60, 90, 0.45);
+    margin-bottom: 20px;
+  }
+
+  .closing-rule {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.6), transparent);
+    margin: 0 auto 18px;
+  }
+
+  .closing-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.9rem, 2.2vw, 1.06rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    max-width: 260px;
+    margin: 0 auto 20px;
+  }
+
+  .closing-sig {
+    font-weight: 200;
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    color: rgba(226, 208, 168, 0.45);
+    text-transform: uppercase;
+  }
+
+  /* --- NAVEGACIÓN --- */
+  .nav {
+    position: fixed;
+    bottom: clamp(16px, 3.5vh, 28px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    padding: 10px 22px;
+    border-radius: 60px;
+    border: 1px solid rgba(184, 148, 90, 0.3);
+  }
+
+  .nav-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(201, 112, 144, 0.5);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 8px 22px;
+    border-radius: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    background: rgba(138, 48, 80, 0.6);
+    border-color: rgba(201, 112, 144, 0.9);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 48, 80, 0.4);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .dots {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(201, 112, 144, 0.3);
+    border: 1px solid rgba(201, 112, 144, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dot.on {
+    background: rgba(201, 112, 144, 0.95);
+    border-color: transparent;
+    transform: scale(1.4);
+    box-shadow: 0 0 12px rgba(201, 112, 144, 0.6);
+  }
+
+  #bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c97090, #e4b87a);
+    transition: width 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    z-index: 200;
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 12px rgba(184, 148, 90, 0.6);
+  }
+
+  #lbl {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 300;
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    color: rgba(201, 112, 144, 0.6);
+    text-transform: uppercase;
+    z-index: 200;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    padding: 4px 16px;
+    border-radius: 40px;
+    white-space: nowrap;
+  }
+
+  /* --- RESPONSIVE PARA MÓVILES --- */
+  @media (max-width: 600px) {
+    .photo-zone {
+      aspect-ratio: 1 / 1;
+    }
+    .text-zone {
+      padding: 16px 18px 20px;
+      gap: 8px;
+    }
+    .text-quote {
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+    .poem-card {
+      padding: 32px 22px 36px;
+    }
+    .poem-body {
+      font-size: 0.9rem;
+    }
+    .nav {
+      gap: 12px;
+      padding: 6px 16px;
+    }
+    .nav-btn {
+      padding: 6px 16px;
+      font-size: 0.85rem;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  @media (max-height: 650px) {
+    .photo-zone {
+      aspect-ratio: 16 / 9;
+    }
+    .text-zone {
+      padding: 12px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="bg"></div>
+<div id="particles"></div>
+<div id="bar"></div>
+<div id="lbl"></div>
+
+<div id="slider">
+
+  <!-- Portada -->
+  <div class="slide active" id="s0">
+    <div class="cover-card">
+      <div class="cover-eyebrow">Con todo mi amor</div>
+      <span class="cover-heart">💕</span>
+      <div class="cover-title">Feliz Día<br>de la Madre,<br>Paola</div>
+      <div class="cover-divider"><span>✦</span></div>
+      <div class="cover-from">de tu hijo Felipe</div>
+    </div>
+  </div>
+
+  <!-- Foto 1 -->
+  <div class="slide" id="s1">
+    <div class="photo-card">
+      <div class="photo-zone">
+        <img class="photo-img" src="foto1.jpeg" alt="Mamá Paola con Felipe de niño">
+        <div class="photo-frame"></div>
+        <div class="photo-counter">I · III</div>
+      </div>
+      <div class="text-zone">
+        <div class="corner-gem tl">✦</div>
+        <div class="corner-gem tr">✦</div>
+        <div class="corner-gem bl">✦</div>
+        <div class="corner-gem br">✦</div>
+        <div class="text-chapter">Capítulo I</div>
+        <div class="text-rule"></div>
+        <p class="text-quote">"Mamá, desde el primer momento en que abrí los ojos al mundo, tú fuiste mi primer hogar, mi primer amor, mi primera razón para sonreír."</p>
+        <div class="text-rule"></div>
+        <div class="text-sig">— Felipe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foto 2 -->
+  <div class="slide" id="s2">
+    <div class="photo-card">
+      <div class="photo-zone">
+        <img class="photo-img" src="foto2.jpeg" alt="Mamá Paola con Felipe bebé">
+        <div class="photo-frame"></div>
+        <div class="photo-counter">II · III</div>
+      </div>
+      <div class="text-zone">
+        <div class="corner-gem tl">✦</div>
+        <div class="corner-gem tr">✦</div>
+        <div class="corner-gem bl">✦</div>
+        <div class="corner-gem br">✦</div>
+        <div class="text-chapter">Capítulo II</div>
+        <div class="text-rule"></div>
+        <p class="text-quote">"Cada recuerdo a tu lado es un tesoro que guardo en lo más profundo de mi corazón. Gracias por crecer conmigo, y por dejarme crecer contigo."</p>
+        <div class="text-rule"></div>
+        <div class="text-sig">— Felipe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foto 3 -->
+  <div class="slide" id="s3">
+    <div class="photo-card">
+      <div class="photo-zone">
+        <img class="photo-img" src="foto3.jpeg" alt="Mamá Paola con Felipe bebé, retrato">
+        <div class="photo-frame"></div>
+        <div class="photo-counter">III · III</div>
+      </div>
+      <div class="text-zone">
+        <div class="corner-gem tl">✦</div>
+        <div class="corner-gem tr">✦</div>
+        <div class="corner-gem bl">✦</div>
+        <div class="corner-gem br">✦</div>
+        <div class="text-chapter">Capítulo III</div>
+        <div class="text-rule"></div>
+        <p class="text-quote">"Tu amor ha sido el regalo más grande de mi vida. No hay palabras que alcancen para decirte cuánto te quiero. ¡Feliz Día de la Madre, mamá!"</p>
+        <div class="text-rule"></div>
+        <div class="text-sig">— Felipe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poema -->
+  <div class="slide" id="s4">
+    <div class="poem-card">
+      <div class="poem-eyebrow">Para ti, mamá</div>
+      <span class="poem-heart">💕</span>
+      <div class="poem-title">Eres mi mundo</div>
+      <div class="poem-rule"></div>
+      <div class="poem-body">
+        Antes de conocer el mundo,<br>
+        te conocí a ti —<br>
+        tu voz fue mi primera canción,<br>
+        tus brazos, mi primer hogar.<br>
+        <em>· · ·</em>
+        Crecí mirándote reír<br>
+        y aprendí que el amor<br>
+        no se dice solo con palabras,<br>
+        sino con presencia, con fuerza,<br>
+        con todo lo que tú eres.<br>
+        <em>· · ·</em>
+        Mamá, en cada paso que doy<br>
+        llevas tus huellas —<br>
+        en mi forma de querer,<br>
+        en mi manera de enfrentar la vida,<br>
+        en cada cosa buena que soy.<br>
+        <em>· · ·</em>
+        Hoy y siempre,<br>
+        gracias por elegirme cada día,<br>
+        por dar tanto sin pedir nada,<br>
+        por ser la razón más hermosa<br>
+        de mi existencia.<br>
+        <em>· · ·</em>
+        Te amo, mamá.<br>
+        Ayer, hoy y por siempre.
+      </div>
+      <div class="poem-sig-wrap">
+        <div class="poem-sig">— Felipe</div>
+        <div class="poem-date">Día de la Madre · 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cierre -->
+  <div class="slide" id="s5">
+    <div class="closing-card">
+      <span class="closing-heart">💕</span>
+      <div class="closing-title">Te amo,<br>mamá</div>
+      <div class="closing-rule"></div>
+      <div class="closing-text">Que este día esté lleno de alegría, abrazos y todo el amor que mereces.</div>
+      <div class="closing-sig">Con amor eterno — Felipe</div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="nav">
+  <button class="nav-btn" id="bPrev" disabled>← Anterior</button>
+  <div class="dots">
+    <div class="dot on" data-p="0"></div>
+    <div class="dot" data-p="1"></div>
+    <div class="dot" data-p="2"></div>
+    <div class="dot" data-p="3"></div>
+    <div class="dot" data-p="4"></div>
+    <div class="dot" data-p="5"></div>
+  </div>
+  <button class="nav-btn" id="bNext">Siguiente →</button>
+</nav>
+
+<script>
+  // Partículas flotantes
+  const particlesContainer = document.getElementById('particles');
+  const CHARS = ['💕', '💗', '💝', '❤️', '🌸', '🌺', '✿', '💞', '💓', '🌷', '✦'];
+
+  function spawnParticle() {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+    const size = (0.5 + Math.random() * 0.7).toFixed(2);
+    const duration = (12 + Math.random() * 18).toFixed(1);
+    const delay = (Math.random() * 8).toFixed(1);
+    el.style.cssText = `left: ${(Math.random() * 100).toFixed(1)}%; font-size: ${size}rem; animation-duration: ${duration}s; animation-delay: ${delay}s;`;
+    particlesContainer.appendChild(el);
+    setTimeout(() => el.remove(), (+duration + +delay) * 1000 + 800);
+  }
+
+  for (let i = 0; i < 18; i++) setTimeout(spawnParticle, i * 200);
+  setInterval(spawnParticle, 2200);
+
+  // Carga suave de imágenes
+  const images = document.querySelectorAll('.photo-img');
+  images.forEach(img => {
+    const handleLoad = () => img.classList.add('loaded');
+    if (img.complete && img.naturalWidth > 0) {
+      handleLoad();
+    } else {
+      img.addEventListener('load', handleLoad);
+    }
+  });
+
+  // --- Control de Slides ---
+  const TOTAL_SLIDES = 6;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const btnPrev = document.getElementById('bPrev');
+  const btnNext = document.getElementById('bNext');
+  const progressBar = document.getElementById('bar');
+  const sectionLabel = document.getElementById('lbl');
+  const LABELS = ['Portada', 'Capítulo I', 'Capítulo II', 'Capítulo III', 'Poema', 'Fin'];
+
+  let currentSlide = 0;
+  let isTransitioning = false;
+
+  function updateUI() {
+    // Actualizar slides activos
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentSlide);
+    });
+    // Actualizar dots
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('on', idx === currentSlide);
+    });
+    // Botones
+    btnPrev.disabled = currentSlide === 0;
+    btnNext.disabled = currentSlide === TOTAL_SLIDES - 1;
+    btnNext.textContent = currentSlide === TOTAL_SLIDES - 2 ? 'Último →' : 'Siguiente →';
+    // Barra de progreso
+    const progressPercent = (currentSlide / (TOTAL_SLIDES - 1)) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+    // Etiqueta
+    sectionLabel.textContent = LABELS[currentSlide];
+  }
+
+  function goToSlide(index) {
+    if (isTransitioning) return;
+    if (index < 0 || index >= TOTAL_SLIDES || index === currentSlide) return;
+
+    isTransitioning = true;
+    currentSlide = index;
+    updateUI();
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 700);
+  }
+
+  btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+  btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const targetIndex = parseInt(e.currentTarget.dataset.p, 10);
+      goToSlide(targetIndex);
+    });
+  });
+
+  // Gestos táctiles
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(deltaX) > 55) {
+      if (deltaX < 0) goToSlide(currentSlide + 1);
+      else goToSlide(currentSlide - 1);
+    }
+  });
+
+  // Teclado
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+    if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+  });
+
+  // Inicializar
+  updateUI();
+</script>
+</body>
+</html>
